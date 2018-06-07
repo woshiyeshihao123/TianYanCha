@@ -43,7 +43,7 @@ function apiAxios (method, url, params, success, failure) {
     params: method === 'GET' || method === 'DELETE' ? params : null,
     baseURL: root,
     withCredentials: false,
-    headers: {'Authorization': 'rUG6WSTCHSJA'}
+    headers: {'Authorization': '验证码'}
   })
     .then(function (res) {
       if (res.data.success === true) {
@@ -54,7 +54,11 @@ function apiAxios (method, url, params, success, failure) {
         if (failure) {
           failure(res.data)
         } else {
-          window.alert('error: ' + JSON.stringify(res.data))
+          if (res.data.error_code === 0) {
+            success(res.data)
+          } else {
+            window.alert('error: ' + JSON.stringify(res.data))
+          }
         }
       }
     })

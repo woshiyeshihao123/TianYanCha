@@ -3,11 +3,8 @@
     <Header></Header>
     <div class="article_list">
       <ul>
-        <li v-for="i in list" :key="i.id">
-          <time v-text="$utils.goodTime(i.create_at)"></time>
-          <router-link :to="'/content/' + i.id">
-            {{ i.title }}
-          </router-link>
+        <li v-for="(value, key) in list" :key="key.value">
+          {{ key }}: {{value}}
         </li>
       </ul>
     </div>
@@ -21,7 +18,7 @@ export default {
   components: { Header, Footer },
   data () {
     return {
-      list: []
+      list: [ ]
     }
   },
   created () {
@@ -29,8 +26,9 @@ export default {
   },
   methods: {
     getData () {
-      this.$api.get('news.json?name=北京百度网讯科技有限公司', null, r => {
-        this.list = r.data
+      this.$api.get('baseinfo?name=北京百度网讯科技有限公司', null, r => {
+        this.list = r.result
+        console.log(this.list)
       })
     }
   }
