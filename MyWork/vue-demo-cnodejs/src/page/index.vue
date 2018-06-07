@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     getData () {
-      this.$api.get('topics', null, r => {
+      this.$api.get('news.json?name=北京百度网讯科技有限公司', null, r => {
         this.list = r.data
       })
     }

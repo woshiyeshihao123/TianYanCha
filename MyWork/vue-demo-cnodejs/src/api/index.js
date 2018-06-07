@@ -1,5 +1,5 @@
 // 配置API接口地址
-var root = '/api/v1'
+var root = '/services/v3/open/'
 // 引用axios
 var axios = require('axios')
 // 自定义判断元素类型JS
@@ -42,7 +42,8 @@ function apiAxios (method, url, params, success, failure) {
     data: method === 'POST' || method === 'PUT' ? params : null,
     params: method === 'GET' || method === 'DELETE' ? params : null,
     baseURL: root,
-    withCredentials: false
+    withCredentials: false,
+    headers: {'Authorization': 'rUG6WSTCHSJA'}
   })
     .then(function (res) {
       if (res.data.success === true) {
